@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>ToDo List - Taskmate</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        {%if messages %}
+
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="post" class="row">
+            {% csrf_token %}
+            <label for="task" class="col-lg-2">New Task:</label>
+            <input type="text" class="form-control col-lg-6" name="task" placeholder="Enter your task here">
+            <button type="submit" class="btn btn-primary col-lg-2">ADD TASK</button>
+        </form>
+        <br>
+        <!-- <h1>ToDo List</h1>
+        <p>Welcome to your ToDo List! Here you can manage your tasks efficiently and stay organized.</p>
+        <h1>{{ all_tasks }}</h1>-->
+        <!-- Add your ToDo list functionality here -->
+        <table class="table table-bordered text-center">
+            <thead class ="table-dark">
+                <tr>
+                    <th scope="col">Task</th>
+                    <th scope="col">Done</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if all_tasks %}
+            {% for obj in all_tasks %}
+                <!--{{ obj.task }} | {{ obj.done }} <br>-->
+                {%if obj.done %}
+                    <tr class="table-success">
+                        
+                        <td><del>{{obj.task }}</del></td>
+                        <td><a href="{% url 'pending_task' obj.id %}" class="btn btn-success btn-sm">Mark this as Pending</a></td>
+                        <td><a href="{% url 'edit_task' obj.id %}" class="btn btn-primary btn-sm">Edit</a></td>
+                        <td><a href="{% url 'delete_task' obj.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                    </tr>
+                {% else %}
+                    <tr class="table-warning">
+                        <td>{{ obj.task }}</td>
+                        <td><a href="{% url 'complete_task' obj.id %}" class="btn btn-warning btn-sm">Mark this as Completed</a></td>
+                        <td><a href="{% url 'edit_task' obj.id %}" class="btn btn-primary btn-sm">Edit</a></td>
+                        <td><a href="{% url 'delete_task' obj.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                    </tr>
+                {% endif %}
+               
+            <!--<div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ obj.task }}</h5>
+        {% if obj.done %}
+            <span class="badge bg-success">Completed</span>
+        {% else %}
+            <span class="badge bg-warning text-dark">Pending</span>
+        {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No tasks available. Add a new task to get started!</p>-->
+            {% endfor %}
+            {%endif %}
+            </tbody>
+        </table>    
+        <nav aria-label ="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>   
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true" style="color: blue;">Previous</a>   
+                </li>   
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                        <a class="page-link" href="#" style="color: blue;">Next</a>
+                </li>   
+            </ul>
+        </nav>      
+    </div>
+{% endblock content %}

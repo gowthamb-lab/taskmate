@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Contact Us - Taskmate</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Welcome to Task Mate, your ultimate task management solution! Our mission is to help you stay organized, boost productivity, and achieve your goals with ease.</p>
+        <h2>Our Features</h2>
+        <ul>
+            <li><strong>Task Creation:</strong> Easily create tasks with titles, descriptions, and due dates.</li>
+            <li><strong>Task Management:</strong> Edit, delete, and mark tasks as completed with a simple click.</li>
+            <li><strong>User-Friendly Interface:</strong> Enjoy a clean and intuitive design that makes task management a breeze.</li>
+            <li><strong>Responsive Design:</strong> Access your tasks on any device, whether it's a desktop, tablet, or smartphone.</li>
+        </ul>
+        <h2>Our Team</h2>
+        <p>Task Mate is developed by a passionate team of developers dedicated to creating tools that enhance productivity and organization. We believe that managing tasks should be simple and efficient, allowing you to focus on what matters most.</p>
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feedback, or suggestions, please don't hesitate to reach out to us through our <a href="/task/contact">Contact Us</a> page. We value your input and are always looking for ways to improve Task Mate.</p>
+        <h2>Get Started Today!</h2>
+        <p>Ready to take control of your tasks? Start using Task Mate today and experience the difference in your productivity!</p>
+        <h1>{{ contact_text }}</h1>
+    </div>
+{% endblock content %}
