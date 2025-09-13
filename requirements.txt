@@ -9,3 +9,4 @@ packaging==25.0
 psycopg==3.2.10
 pypi==2.1
 sqlparse==0.5.3
+whitenoise==6.10.0
