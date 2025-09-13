@@ -69,7 +69,7 @@ def edit_task(request, task_id):
 @login_required    
 def complete_task(request, task_id):
     task = TaskList.objects.get(pk=task_id)
-    if task.mandage != request.user:
+    if task.manage != request.user:
         messages.error(request, ('Access Restricted, You are not allowed!'))
         return redirect('todolist') 
     task.done = True
